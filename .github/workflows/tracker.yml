@@ -16,6 +16,8 @@ jobs:
         with:
           app-id: ${{ vars.RADIUS_APP_ID }}
           private-key: ${{ secrets.RADIUS_ID_KEY }}
+          owner: ${{ github.repository_owner }}
+          
 
       - name: Restore cache for tracker
         id: cache-radius-tracker
