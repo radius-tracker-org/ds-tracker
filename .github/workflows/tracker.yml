@@ -22,7 +22,7 @@ jobs:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           APP_ID: ${{ vars.RADIUS_APP_ID }}
         run: | 
-           gh repo clone radius-tracker-org/shadcn-ui-template
+           git clone https://$GH_TOKEN@github.com:$GH_TOKEN/radius-tracker-org/shadcn-ui-template.git
           
 
       - name: Restore cache for tracker
