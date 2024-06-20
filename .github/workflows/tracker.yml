@@ -21,8 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: | 
-           git clone https://$GITHUB_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
-           ls -all 
+           echo $GITHUB_TOKEN 
           
 
       - name: Restore cache for tracker
