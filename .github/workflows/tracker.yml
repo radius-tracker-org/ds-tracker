@@ -23,6 +23,7 @@ jobs:
           APP_ID: ${{ vars.RADIUS_APP_ID }}
         run: | 
            git clone https://$GH_TOKEN:$GH_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
+           ls -all shadcn-ui-template
           
 
       - name: Restore cache for tracker
