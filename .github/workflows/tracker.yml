@@ -20,8 +20,9 @@ jobs:
       - name: Test token
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          APP_ID: ${{ vars.RADIUS_APP_ID }}
         run: | 
-           git clone https://$GH_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
+           gh repo clone radius-tracker-org/shadcn-ui-template
           
 
       - name: Restore cache for tracker
