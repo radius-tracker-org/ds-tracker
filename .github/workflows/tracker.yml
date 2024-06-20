@@ -19,9 +19,9 @@ jobs:
           owner: ${{ github.repository_owner }}
       - name: Test token
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: | 
-           git clone https://$GITHUB_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
+           git clone https://$GH_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
           
 
       - name: Restore cache for tracker
@@ -35,7 +35,7 @@ jobs:
 
       - name: Run the tracker
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           npx radius-tracker timelines ./radius-tracker.config.js
 
