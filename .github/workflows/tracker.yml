@@ -10,6 +10,13 @@ jobs:
       - name: Checkout this repository
         uses: actions/checkout@v4
 
+      - name: Generate token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.RADIUS_APP_ID }}
+          private-key: ${{ secrets.RADIUS_ID_KEY }}
+
       - name: Restore cache for tracker
         id: cache-radius-tracker
         uses: actions/cache/restore@v4        
@@ -20,6 +27,8 @@ jobs:
             cache-radius-tracker-${{hashFiles('radius-tracker.config.js')}}
 
       - name: Run the tracker
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
         run: |
           npx radius-tracker timelines ./radius-tracker.config.js
 
