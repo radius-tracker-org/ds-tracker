@@ -1,6 +1,6 @@
 module.exports = [
     {
-        repoUrl: 'radius-tracker-org/shadcn-ui-template',
+        repoUrl: 'https://github.com/radius-tracker-org/shadcn-ui-template',
         displayName: 'shadcn-ui-template',
         isTargetModuleOrPath: {
             mui: /^(@mui|@material-ui)/,
