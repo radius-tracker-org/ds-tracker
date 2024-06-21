@@ -17,13 +17,12 @@ jobs:
           app-id: ${{ vars.RADIUS_APP_ID }}
           private-key: ${{ secrets.RADIUS_ID_KEY }}
           owner: ${{ github.repository_owner }}
-      - name: Test token
+
+      - name: Add token to configuration
         env:
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-          APP_ID: ${{ vars.RADIUS_APP_ID }}
         run: | 
-           git clone https://$GH_TOKEN:$GH_TOKEN@github.com/radius-tracker-org/shadcn-ui-template.git
-           ls -all shadcn-ui-template
+          sed -i "s/github.com/$GH_TOKEN:$GH_TOKEN@github.com/g" radius-tracker.config.js
           
 
       - name: Restore cache for tracker
