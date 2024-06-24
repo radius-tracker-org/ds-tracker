@@ -19,9 +19,9 @@ jobs:
           owner: ${{ github.repository_owner }}
       
       - name: Add cache version to environment
-        id: radius-cache-version
+        id: cache-version
         run: |
-          echo "radius_cache_version=$(npx radius-tracker cache_version)" >> "$GITHUB_ENV"
+          echo "radius_cache_version=$(npx radius-tracker cache_version)" >> "$GITHUB_OUTPUT"
 
 
       - name: Add token to configuration
@@ -35,10 +35,10 @@ jobs:
         id: cache-radius-tracker
         uses: actions/cache/restore@v4        
         with: 
-          key: cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
+          key: cache-radius-tracker-${{steps.cache-version.outputs.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
           path: radius-tracker-cache
           restore-keys: |
-            cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
+            cache-radius-tracker-${{steps.cache-version.outputs.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
 
       - name: Run the tracker
         env:
@@ -49,7 +49,7 @@ jobs:
       - name: Save cache for tracker
         uses: actions/cache/save@v4        
         with: 
-          key: cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}-${{github.run_id}}    
+          key: cache-radius-tracker-${{steps.cache-version.outputs.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}-${{github.run_id}}    
           path: radius-tracker-cache
       
       - name: Upload database artifact
