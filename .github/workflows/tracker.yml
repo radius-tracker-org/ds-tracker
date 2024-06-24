@@ -35,7 +35,7 @@ jobs:
         id: cache-radius-tracker
         uses: actions/cache/restore@v4        
         with: 
-          key: cache-radius-tracker-${{github.env.radius-cache-version}}-${{hashFiles('radius-tracker.config.js')}}
+          key: cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
           path: radius-tracker-cache
           restore-keys: |
             cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}
@@ -49,7 +49,7 @@ jobs:
       - name: Save cache for tracker
         uses: actions/cache/save@v4        
         with: 
-          key: cache-radius-tracker-${{github.env.radius-cache-version}}-${{hashFiles('radius-tracker.config.js')}}-${{github.run_id}}    
+          key: cache-radius-tracker-${{github.env.radius_cache_version}}-${{hashFiles('radius-tracker.config.js')}}-${{github.run_id}}    
           path: radius-tracker-cache
       
       - name: Upload database artifact
