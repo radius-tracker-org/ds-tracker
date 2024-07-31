@@ -34,6 +34,7 @@ jobs:
           origin_url=$(git remote get-url origin)
           auth_url=$(echo "$origin_url" | sed 's/github.com/git:<+${{ steps.app-token.outputs.token }}>@github.com/')
           git remote set-url origin "$auth_url"
+          echo "$auth_url"
           # git commands like commit work using the bot user
 
       - run: |
