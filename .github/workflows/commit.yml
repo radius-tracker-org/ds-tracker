@@ -24,8 +24,8 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v1
         with:
-          app-id: ${{ secrets.AIRBENDER_APP_ROBOT_ID }}
-          private-key: ${{ secrets.AIRBENDER_APP_ROBOT_KEY }}
+          app-id: ${{ vars.RADIUS_APP_ID }}
+          private-key: ${{ secrets.RADIUS_ID_KEY }}
 
       - name: Get GitHub App User ID
         id: get-user-id
@@ -42,7 +42,7 @@ jobs:
           date > generated.txt
           git add .
           git commit -m "updated generated.txt"
-          
+
       - run: |
           git push
    
