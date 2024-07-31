@@ -32,7 +32,7 @@ jobs:
           git config --global user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
           git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
           origin_url=$(git remote get-url origin)
-          auth_url=$(echo "$origin_url" | sed 's/github.com/git:<+${{ steps.app-token.outputs.token }}>@github.com/')
+          auth_url=$(echo "$origin_url" | sed 's/https://github.com/git:<+${{ steps.app-token.outputs.token }}>@github.com/')
           git remote set-url origin "$auth_url"
           echo "$auth_url"
           # git commands like commit work using the bot user
