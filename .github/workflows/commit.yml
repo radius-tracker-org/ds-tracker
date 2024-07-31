@@ -42,6 +42,7 @@ jobs:
           date > generated.txt
           git add .
           git commit -m "updated generated.txt"
+          git config --get remote.origin.url
 
       - run: |
           git push
